@@ -1,0 +1,6 @@
+D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\Tricorder.cyprj|70ea408d-b8cd-4dfe-a88e-97128b6e323b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|fbc80950-c687-4dc7-a3ab-e224b4610b91
+C:\Users\awliu\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|cbe05c10-83ef-4e43-ad85-579e49bd1749
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|219eea8a-fbad-4cc3-99e3-57c82bc64999
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|25a941c6-171e-488d-9efb-c4e7a0c52f14
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|1dafed4c-f21f-4340-8c08-36b27b134721

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="us-ascii"?>
+
+<fileSet version="1" anchorPath="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp" xsi:schemaLocation="http://cypress.com/xsd/cypathdictionary cypathdictionary.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cypress.com/xsd/cypathdictionary">
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cyfitter_cfg.h" value="HEADER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cyfitter_sysint_cfg.h" value="HEADER;;;;;Pins and Interrupts" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cyfitter_sysint_cfg.c" value="SOURCE_C;CortexM0p,CortexM4;;;;Pins and Interrupts" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cyfitter_cfg.c" value="SOURCE_C;CortexM0p;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cymetadata.c" value="SOURCE_C;CortexM0p,CortexM4;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cydevice_trm.h" value="HEADER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cydevicegnu_trm.inc" value="HEADER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cydevicerv_trm.inc" value="HEADER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cydeviceiar_trm.inc" value="HEADER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cyfitter.h" value="HEADER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cyfitter_gpio.h" value="HEADER;;;;;Pins and Interrupts" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cyfitter_sysint.h" value="HEADER;;;;;Pins and Interrupts" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cydisabledsheets.h" value="HEADER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\UART.c" value="SOURCE_C;CortexM0p,CortexM4;;;;UART" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\UART.h" value="HEADER;;;;;UART" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\I2C.c" value="SOURCE_C;CortexM0p,CortexM4;;;;I2C" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\I2C.h" value="HEADER;;;;;I2C" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_1.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_1" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_1.h" value="HEADER;;;;;PWM_1" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_2.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_2" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_2.h" value="HEADER;;;;;PWM_2" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_3.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_3" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_3.h" value="HEADER;;;;;PWM_3" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\CLK3.h" value="HEADER;;;;;CLK3" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_4.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_4" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_4.h" value="HEADER;;;;;PWM_4" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_5.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_5" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_5.h" value="HEADER;;;;;PWM_5" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_6.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_6" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_6.h" value="HEADER;;;;;PWM_6" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\CLK2.h" value="HEADER;;;;;CLK2" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_7.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_7" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_7.h" value="HEADER;;;;;PWM_7" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_8.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_8" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_8.h" value="HEADER;;;;;PWM_8" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_9.c" value="SOURCE_C;CortexM0p,CortexM4;;;;PWM_9" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\PWM_9.h" value="HEADER;;;;;PWM_9" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\CLK1.h" value="HEADER;;;;;CLK1" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\ADC.c" value="SOURCE_C;CortexM0p,CortexM4;;;;ADC" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\ADC.h" value="HEADER;;;;;ADC" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\ADC_INT.c" value="SOURCE_C;CortexM0p,CortexM4;;;;ADC" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\ADC_INIT.c" value="SOURCE_C;CortexM0p,CortexM4;;;;ADC" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\ADC_PM.c" value="SOURCE_C;CortexM0p,CortexM4;;;;ADC" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\UART_SCBCLK.h" value="HEADER;;;;;UART_SCBCLK" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\I2C_SCBCLK.h" value="HEADER;;;;;I2C_SCBCLK" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\ADC_intSarClock.h" value="HEADER;;;;;ADC_intSarClock" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\project.h" value="OTHER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cycodeshareimport.ld" value="OTHER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cycodeshareexport.ld" value="OTHER;;;;;" />
+  <file name="D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\codegentemp\cycodeshareimport.scat" value="OTHER;;;;;" />
+</fileSet>
