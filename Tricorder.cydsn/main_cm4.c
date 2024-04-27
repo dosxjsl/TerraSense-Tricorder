@@ -9,6 +9,9 @@
 #include <clcd.h>
 #include <func_list.h>
 
+/***************************************
+*     Global variables
+***************************************/
 static cy_stc_scb_i2c_master_xfer_config_t register_setting;
 static uint8 rbuff[2]; // Read buffer
 static uint8 wbuff[2]; // Write buffer
@@ -17,20 +20,16 @@ static uint8 wbuff[2]; // Write buffer
 uint8_t xm;
 uint8_t xc;
 uint8_t xl;
-uint8_t off;
+int off;
 uint8_t x;
 uint8_t tm;
 uint8_t tl;
 uint8_t STA;
 int8 n;
-float averageAlt;
 float pressure;
 float altitude;
 float temp;
 float temperatureAlt;
-int m = 0;
-
-static uint16 altAverage[8];
 
 // humidity sensor variables
 uint16_t humidityRaw;
@@ -51,13 +50,14 @@ int8_t ZH;
 int16_t xMagnetometerData;
 int16_t yMagnetometerData;
 int16_t zMagnetometerData;
-
+int count = 0;
 double heading;
 double averageMag = 0;
 
 // IR temp. sensor
 uint32_t rawObjTemp;
-float objTemp;
+float objTempC;
+float objTempF;
 
 // other
 int flag = 0;
@@ -222,6 +222,25 @@ void changeButtonStatus(char arr[]){
 /*******************************************************************************
 * LCD Functions
 *******************************************************************************/
+void do_pos(int line, int col){
+    // Moves the position of the cursor.
+    int addr;
+    if (line < 1) { 
+        line = 1;
+    }
+    if (line > CLCD_NUM_ROWS) {
+        line = CLCD_NUM_ROWS;
+    }
+    if (col < 1) {
+        col = 1;
+    } 
+    if (col > CLCD_NUM_COLS) {
+        col = CLCD_NUM_COLS ;
+    }
+    addr = 0x40 * (line-1) + (col-1);
+    CLCD_SetDDRAMAddr(addr) ;
+}
+
 static void format_sensor_data(float data, char* buffer, int buffer_size){    
     // Convert sensor data number to string
     snprintf(buffer, buffer_size, "%.2f", data); // string with 2 decimal places
@@ -231,47 +250,58 @@ void write_sensor(float data){
     // Function to write sensor data to LCD
     char sensor_data_str[16];
     format_sensor_data(data, sensor_data_str, sizeof(sensor_data_str));
-    //LCD_SetCursor( 1 , 0);
-    //CLCD_PutString("Altimeter data:");
-    //LCD_SetCursor( 2 , 0);
-    CLCD_PutString(sensor_data_str);
+    //CLCD_PutString(sensor_data_str);
     
     switch(flag){
         case 1:
             // Ambient Temperature
-            CLCD_PutString("F");
+            CLCD_PutString("Ambient Temp.");
+            do_pos(2,1);
+            CLCD_PutString(sensor_data_str);
+            CLCD_PutString("\337F");
             break;
         case 2:
             // IR Object Temperature
-            CLCD_PutString("F");
+            CLCD_PutString("Object Temp.");
+            do_pos(2,1);
+            CLCD_PutString(sensor_data_str);
+            CLCD_PutString("\337F");
             break;
         case 3:
             // Magnetometer
-            CLCD_PutString(" degrees");
+            CLCD_PutString(sensor_data_str);
+            CLCD_PutString("\337");
             break;
         case 4:
             // Humidity
+            CLCD_PutString("Humidity");
+            do_pos(2,1);
+            CLCD_PutString(sensor_data_str);
             CLCD_PutString("%");
             break;
         case 5:
             // Altitude
+            CLCD_PutString("Altitude");
+            do_pos(2,1);
+            CLCD_PutString(sensor_data_str);
             CLCD_PutString(" meters");
             break;
     }
 }
 
-
 /*******************************************************************************
 * Function Name: CheckSensorIdentity()
 *******************************************************************************/
-static void CheckSensorIdentity(uint16_t WHO_AM_I_REG_ADDR, uint16_t DEVICE_ID){
+int CheckSensorIdentity(uint16_t WHO_AM_I_REG_ADDR, uint16_t DEVICE_ID){
     uint8 whoAmIValue = ReadRegister(WHO_AM_I_REG_ADDR);
 
     if (whoAmIValue == DEVICE_ID){
         printf("\r\nSensor detected. Who Am I value: 0x%X\r\n", whoAmIValue);
+        return 1;
     }
     else{
         printf("\r\nSensor not detected: 0x%X\r\n", whoAmIValue);
+        return 0;
     }
 }
 
@@ -280,14 +310,16 @@ static void CheckSensorIdentity(uint16_t WHO_AM_I_REG_ADDR, uint16_t DEVICE_ID){
 * Temperature Initialize and Active Functions
 *******************************************************************************/
 void tempInitialize(void){
+    // Turn OFF other sensors. Turn ON Ambient Temp sensor.
     sensorON(ADT7410_ADDR);
-    sensorOFF(LIS3MDL_ADDR1);
+    //sensorOFF(LIS3MDL_ADDR1);
     sensorOFF(HTU31D_ADDR);
     sensorOFF(ALTIMETER_ADDR);
     
     register_setting.slaveAddress = ADT7410_ADDR;
     
-    WriteRegister(ADT7410_CONFIG, 0x80); //0b10000000
+    //0b10000000 (Continuous Reading and 16 bit resolution).
+    WriteRegister(ADT7410_CONFIG, 0x80); 
     WriteRegister(ADT7410_TEMPMSB,0x00);
     WriteRegister(ADT7410_TEMPLSB,0x00);
     changeButtonStatus("Temperature");
@@ -318,17 +350,18 @@ void tempActive(void){
 * IR Temperature Initialize and Active Functions
 *******************************************************************************/
 void IRtempIntialize(void){
+    // Turn OFF other sensors. Turn ON IR Temp sensor.
     sensorOFF(ADT7410_ADDR);
-    sensorOFF(LIS3MDL_ADDR1);
+    //sensorOFF(LIS3MDL_ADDR1);
     sensorOFF(HTU31D_ADDR);
     sensorOFF(ALTIMETER_ADDR);
     
-    register_setting.slaveAddress = MLX90614_DEFAULT_ADDRESS;
     changeButtonStatus("IRTemp");
+    register_setting.slaveAddress = MLX90614_DEFAULT_ADDRESS;  
 }
 
 void IRtempActive(void){
-    wbuff[0] = MLX90614_REGISTER_TOBJ1; // buffer that will contain the register that will be read from
+    wbuff[0] = MLX90614_REGISTER_TOBJ1;
 
     register_setting.buffer = wbuff;
     register_setting.bufferSize = 1;
@@ -337,18 +370,19 @@ void IRtempActive(void){
     I2C_MasterWrite(&register_setting);
     WaitForOperation();
 
-    register_setting.buffer = rbuff; // buffer that will store the value read from the register
-    register_setting.bufferSize = 2;
+    register_setting.buffer = rbuff;
+    register_setting.bufferSize = 2; // Increase the read buffer size to get 2 bytes.
     register_setting.xferPending = false;
 
     I2C_MasterRead(&register_setting);
     WaitForOperation();
     rawObjTemp = (double) ((rbuff[1] << 8) | rbuff[0]);
-    objTemp = (rawObjTemp * 0.02) - 273.15;
-    printf("Object Temp: %0.2lfC\r\n",objTemp);
-    printf("Object Temp: %0.2lfF\r\n\n",objTemp * (9.0/5.0) + 32.0); 
+    objTempC = (rawObjTemp * 0.02) - 273.15;
+    objTempF = objTempC * (9.0/5.0) + 32.0;
+    printf("Object Temp: %0.2lfC\r\n",objTempC);
+    printf("Object Temp: %0.2lfF\r\n\n",objTempF); 
     CLCD_Clear();
-    write_sensor((float)objTemp); 
+    write_sensor((float)objTempF); 
 }
 
 /*******************************************************************************
@@ -370,13 +404,15 @@ double CalculateHeading(int16_t x, int16_t y){
 * Magnetometer Initialize and Active Functions
 *******************************************************************************/
 void magnetInitialize(void){
+    // Turn off other sensors.
     sensorOFF(ADT7410_ADDR);
-    sensorON(LIS3MDL_ADDR1);
+    //sensorON(LIS3MDL_ADDR1);
     sensorOFF(HTU31D_ADDR);
     sensorOFF(ALTIMETER_ADDR);
     
+    changeButtonStatus("Magnet");
+    
     register_setting.slaveAddress = LIS3MDL_ADDR1;
-    //register_setting.slaveAddress = LIS3MDL_ADDR2;
     
     WriteRegister(LIS3MDL_CTRL_REG1, 0xFC); //set ODR to 80Hz and ultra perfomance mode for x and y.
     WriteRegister(LIS3MDL_CTRL_REG2, 0b01000000); //configure the sensor to be more sensitive with +-12 gauss  
@@ -384,32 +420,68 @@ void magnetInitialize(void){
     WriteRegister(LIS3MDL_CTRL_REG3, 0b00000000); //change from power down to continuous operating mode
     WriteRegister(LIS3MDL_CTRL_REG4, 0b00001100); //set zaxis to ultra high performace mode
     WriteRegister(LIS3MDL_CTRL_REG5, 0b01000000); //set BDU to 1
-    changeButtonStatus("Magnet");
+    
 }
-void magnetActive(void){
-    CheckSensorIdentity(WHO_AM_I_REG_ADDR_LIS3MDL,LIS3MDL_DEVICE_ID);
-//    if(!CheckSensorIdentity()){
-//        register_setting.slaveAddress = LIS3MDL_ADDR2;
-//    } 
-//    else{
-//        register_setting.slaveAddress = LIS3MDL_ADDR1;  
-//    }
+void magnetActive(void){ 
+    // Sometimes the PSoC does not recognize the sensor for the current slave address.
+    // The if statement will switch the address every time the sensor is not recognized.
+    if(!CheckSensorIdentity(WHO_AM_I_REG_ADDR_LIS3MDL,LIS3MDL_DEVICE_ID)){
+        count++;
+        if(count % 2 == 1){
+            register_setting.slaveAddress = LIS3MDL_ADDR2;
+        }
+        else{
+            register_setting.slaveAddress = LIS3MDL_ADDR1;
+        }
+    }
+        
     XL = ReadRegister(OUT_X_L);
     XH = ReadRegister(OUT_X_H);
     YL = ReadRegister(OUT_Y_L);
     YH = ReadRegister(OUT_Y_H);
     ZL = ReadRegister(OUT_Z_L);
     ZH = ReadRegister(OUT_Z_H);
-    xMagnetometerData = ((XH << 8) | XL);  // shift the high data to left and or it to combine low and high data
+    
+    // shift the high data to left and or it to combine low and high data
+    xMagnetometerData = ((XH << 8) | XL);  
     yMagnetometerData = ((YH << 8) | YL);
     zMagnetometerData = ((ZH << 8) | ZL);
+    
     printf("MagData X: %" PRId16 "r\r\n", xMagnetometerData);
     printf("MagData Y: %" PRId16 "r\r\n", yMagnetometerData);
-    //printf("MagData Z: %" PRId16 "\r\n", zMagnetometerData);
+    //printf("MagData Z: %" PRId16 "\r\n", zMagnetometerData); // Unused 
+    
     heading = CalculateHeading(xMagnetometerData, yMagnetometerData);
     printf("Heading: %.2f degrees\r\n", heading);
     CLCD_Clear();
-    write_sensor((float)heading); 
+    write_sensor((float)heading);
+    do_pos(2,1);
+    
+    // Determine Direction
+    if((heading >= 359 && heading <= 360) || (heading >= 0 && heading <= 1)){
+        CLCD_PutString("North");
+    }
+    else if(heading > 1 && heading <= 88){
+        CLCD_PutString("North East\n");
+    }
+    else if(heading >= 89 && heading <= 91){
+        CLCD_PutString("East");
+    }
+    else if(heading > 91 && heading < 179){
+        CLCD_PutString("South East");
+    }
+    else if(heading >= 179 && heading <= 181){
+        CLCD_PutString("South");
+    }
+    else if(heading > 181 && heading < 269){
+        CLCD_PutString("South West");
+    }
+    else if(heading >= 269 && heading <= 271){
+        CLCD_PutString("West");
+    }
+    else if(heading > 271 && heading < 359){
+        CLCD_PutString("North West");
+    }
 }
 
 /*******************************************************************************
@@ -417,18 +489,18 @@ void magnetActive(void){
 *******************************************************************************/
 void humidityInitialize(void){
     sensorOFF(ADT7410_ADDR);
-    sensorOFF(LIS3MDL_ADDR1);
+    //sensorOFF(LIS3MDL_ADDR1);
     sensorON(HTU31D_ADDR);
     sensorOFF(ALTIMETER_ADDR);
     
-    register_setting.slaveAddress = HTU31D_ADDR;
     changeButtonStatus("Humidity");
+    register_setting.slaveAddress = HTU31D_ADDR;
 }
 void humidityActive(void){
     // Execute “Conversion” command with the desired resolution to perform measurement and load it in sensor memory
     WriteRegister(HTU31D_CONVERSION,0x01);
     
-    // Wait for the conversion time
+    // Wait for the conversion time (5ms)
     CyDelay(5);
     
     humidityRaw = (ReadRegister(HTU31D_READHUM) << 8);
@@ -448,61 +520,38 @@ void humidityActive(void){
 *******************************************************************************/
 void altimeterInitialize(void){
     sensorOFF(ADT7410_ADDR);
-    sensorOFF(LIS3MDL_ADDR1);
+    //sensorOFF(LIS3MDL_ADDR1);
     sensorOFF(HTU31D_ADDR);
     sensorON(ALTIMETER_ADDR);
     
-    register_setting.slaveAddress = ALTIMETER_ADDR;
-    WriteRegister(0x26, 0xB8); // Control Reg1 in Standby Mode
-    WriteRegister(0x13, 0x07); // Sensor Data Reg; allows new data to overwrite old data
-    WriteRegister(0x26, 0xB9); // Control Reg1 in Active Mode & Altimeter Mode
-    WriteRegister(0x2D, 0b11000111); // Writing offset -57
     changeButtonStatus("Altitude");
+    register_setting.slaveAddress = ALTIMETER_ADDR;
+    WriteRegister(MPL3115A2_CTRL_REG1, 0xB8);   // Standby Mode
+    WriteRegister(MPL3115A2_PT_DATA_CFG, 0x07); // Sensor Data Reg; allows new data to overwrite old data
+    WriteRegister(MPL3115A2_CTRL_REG1, 0xB9);   // Active Mode & Altimeter Mode
+    WriteRegister(MPL3115A2_OFF_H, 0b01111111); // Offset -10
 }
 void altimeterActive(void){
     CheckSensorIdentity(WHO_AM_I_REG_ADDR_ALTIMETER,ALTIMETER_DEVICE_ID);
 
-    xm = ReadRegister(0x01);
-    xc = ReadRegister(0x02);
-    xl = ReadRegister(0x03);
-    off = ReadRegister(0x2D);
-    tm = ReadRegister(0x04);
-    tl = ReadRegister(0x05);
-        
-    //printf("\nOffset: %d \r\n", off);
+    xm = ReadRegister(MPL3115A2_OUT_P_MSB);
+    xc = ReadRegister(MPL3115A2_OUT_P_CSB);
+    xl = ReadRegister(MPL3115A2_OUT_P_LSB);
+    off = ReadRegister(MPL3115A2_OFF_H);
+    tm = ReadRegister(MPL3115A2_OUT_T_MSB);
+    tl = ReadRegister(MPL3115A2_OUT_T_LSB);
+
     // Calculating Temp
-    temp = ((tm << 8) | tl) / 256.0;            // Temp in Celcius
-    temperature = (temp * 9.0 / 5.0) + 32.0;    // Temp in Fahranheit
+    temp = ((tm << 8) | tl) / 256.0;    // Temp in Celcius
+    temperatureAlt = (temp * 9.0 / 5.0) + 32.0; // Temp in Fahranheit
     printf("\nTemperature: %.2f degrees Fahrenheit\r\n", temperatureAlt);
             
     // Convert raw data to altitude (check MPL3115A2 datasheet for details)
-    altitude = (float)(((xm << 16) | (xc << 8) | xl) >> 4);
-    altitude = altitude - 129583;
-       
-    // Takes average of altitude
-    altAverage[m] = altitude;
-    if (m < 3){
-        m++;
-    }
-    else{
-        averageAlt = ((altAverage[0] + altAverage[1] + altAverage[2] + altAverage[3]) / 4);
-        printf("Altitude: %.2f meters\r\n", averageAlt);
-        
-        CLCD_Clear();
-        write_sensor((float)averageAlt - 65012);   
-        m = 0;    
-    }
+    altitude = (float)((xc << 8) | xm) / 1600.0;
+    printf("Altitude: %.2f meters\r\n", altitude);
+    CLCD_Clear();
+    write_sensor((float)altitude);
 }
-
-/*
-void LCD_SetCursor(uint8 row, uint8 col);
-void LCD_SendCommand(uint8_t command);
-
-void LCD_SetCursor(uint8_t row, uint8_t col)
-{
-
-}
-*/
 
 int main(void){
     __enable_irq(); /* Enable global interrupts. */
@@ -529,17 +578,28 @@ int main(void){
     Cy_SysInt_Init(&Button5_Int_cfg, button5Handler);
     NVIC_EnableIRQ(Button5_Int_cfg.intrSrc);
     
-    
-    tty_init(USE_CM4) ;
-    CLCD_Init() ;
-    splash("PSoC 6 CLCD Test\r\n") ;
-    CLCD_PutString("CLCD Test") ;
-    CyDelay(1000);
-    CLCD_Clear();
-    CLCD_PutString("Awaiting Action");
     double value;
     double volts;
-    for(;;){
+    
+    tty_init(USE_CM4);
+    CLCD_Init();
+    
+    do_pos(1,3);
+    CLCD_PutString("TerraSense");
+    do_pos(2,3);
+    CLCD_PutString("Tricorder!");
+    CyDelay(700);
+    CLCD_Clear();
+    do_pos(1,3);
+    CLCD_PutString("Presented by");
+    do_pos(2,3);
+    CLCD_PutString("Team Juliet!");
+    CyDelay(700);
+    CLCD_Clear();
+    CLCD_PutString("Awaiting Action");
+    CyDelay(500);
+    
+    while(1){
         switch (flag){
             case 1:
                 if(!buttonStatus[0]){
@@ -558,7 +618,6 @@ int main(void){
                 if(!buttonStatus[2]){
                     magnetInitialize();
                 }
-                //magnetInitialize();
                 magnetActive();
                 break;
                 
@@ -577,19 +636,31 @@ int main(void){
                 break;
         }
         
+        // Measure the battery percentage
         Cy_SAR_StartConvert(SAR, CY_SAR_START_CONVERT_SINGLE_SHOT);
         value = Cy_SAR_GetResult16(SAR, 0);
         volts = Cy_SAR_CountsTo_mVolts(SAR,0,value) * 2.0;
+        
         /*
+        // Print Battery Percentage to LCD (UNUSED)
+        CLCD_Clear();
+        write_sensor((float)volts);
+        CLCD_PutString("mV");
+        do_pos(2,1);
+        write_sensor((float)(volts/4000)*100);
+        CLCD_PutString("%");
+        */
+        
+        /*
+        // Display  (UNUSED)
         if (volts > 4000 ) {
-            Cy_GPIO_Write(RedLED_PORT, RedLED_NUM, 0); //red LED on if charge is high
+            Cy_GPIO_Write(RedLED_PORT, RedLED_NUM, 0);
         }
         else if ((volts <= 4000) && (volts > 3850)) {
-            Cy_GPIO_Inv(RedLED_PORT, RedLED_NUM); //blink LED if battery drains
-            CyDelay(50);
+            Cy_GPIO_Inv(RGB_Red1_PORT, RedLED_NUM);
         }
-        else if (volts <= 3850) {
-            Cy_GPIO_Inv(RedLED_PORT, RedLED_NUM); //blink LED faster
+        else if (volts <= 500) {
+            Cy_GPIO_Inv(RedLED_PORT, RedLED_NUM);
         }
         */
         //printf("Battery Voltage = %.2lf mV\r\n", volts);

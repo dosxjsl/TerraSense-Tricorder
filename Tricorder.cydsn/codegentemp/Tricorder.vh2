@@ -2,7 +2,7 @@
 --	Conversion of Tricorder.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Mar 18 20:04:09 2024
+--	Fri Mar 22 11:44:39 2024
 --
 
 USE cypress.cypress.all;

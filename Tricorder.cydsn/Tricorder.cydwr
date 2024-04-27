@@ -8,7 +8,9 @@
     <Group key="Interrupt">
       <Data key="4c7dca43-fc01-44ff-86f6-4fbc1ce7eb27" value="Button1_Int" />
       <Data key="5a3bd2a5-e02a-443c-b406-756614e20778/b9a438dd-31dc-4d3f-932a-b92d7b255394" value="I2C_SCB_IRQ" />
+      <Data key="5c302966-854d-4d26-bc0b-b82164edc441" value="Button5_Int" />
       <Data key="54a308fe-029b-4f5e-bec4-6e96399c98ad" value="Button2_Int" />
+      <Data key="8942adcf-b727-4b0a-bad5-80975b574cdf/76cc9645-f3bd-4d51-b91b-2975c83cdda3" value="ADC_IRQ" />
       <Data key="502531c8-fe2c-4209-8472-e7dda8221f74" value="tty_rx_int" />
       <Data key="b027d9ff-18d5-4303-9764-59b2ade95553" value="Button3_Int" />
       <Data key="d2fc4e8a-05f5-418e-99b0-c486af5c40fa" value="Button4_Int" />

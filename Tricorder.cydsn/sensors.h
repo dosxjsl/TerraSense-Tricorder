@@ -96,11 +96,3 @@
 *******************************************************************************/
 #define LCD_ROW_COUNT 2
 #define LCD_COL_COUNT 16
-
-/*******************************************************************************
-* OTHER
-*******************************************************************************/
-#define ext_greenLEDPort P10_0_PORT
-#define ext_greenLEDNum P10_0_NUM
-#define ext_redLEDPort P10_1_PORT
-#define ext_redLEDNum P10_1_NUM

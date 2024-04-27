@@ -1,6 +1,7 @@
-D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\Tricorder.cyprj|70ea408d-b8cd-4dfe-a88e-97128b6e323b
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|fbc80950-c687-4dc7-a3ab-e224b4610b91
-C:\Users\awliu\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|cbe05c10-83ef-4e43-ad85-579e49bd1749
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|219eea8a-fbad-4cc3-99e3-57c82bc64999
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|25a941c6-171e-488d-9efb-c4e7a0c52f14
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|1dafed4c-f21f-4340-8c08-36b27b134721
+D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\Tricorder.cyprj|44dfc60d-a812-45ae-af3b-bde0a2b770b8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|ffa2e8f7-95a1-4c24-b1ac-4369f59090bc
+C:\Users\awliu\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|abb26830-6d88-460f-9bf8-9c0845db9a99
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|9f185390-7990-4c0d-b96b-0f15748bad4d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|53097e49-b6fa-4652-a80a-903c26ce5225
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|9c12fa04-cf62-473f-a036-dd8e829d4aaf
+D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder_Copy_01.cydsn\Tricorder_Copy_01.cyprj|a21e1676-31fb-4888-b361-0ccb97978cef
