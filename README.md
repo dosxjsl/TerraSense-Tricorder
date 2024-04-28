@@ -18,7 +18,7 @@ This battery-operated handheld device captures the environmental data around the
 - [ADT7410](https://www.analog.com/media/en/technical-documentation/data-sheets/ADT7410.pdf) (Ambient Temperature)
 - [MLX90614](https://www.sparkfun.com/datasheets/Sensors/Temperature/SEN-09570-datasheet-3901090614M005.pdf) (Object Temperature)
 - [MPL3115A2](https://www.nxp.com/docs/en/data-sheet/MPL3115A2.pdf) (Alititude/Pressure)
-- [LIS3MDL](https://www.st.com/resource/en/datasheet/lis3mdl.pdf) (Magnometer)
+- [LIS3MDL](https://www.st.com/resource/en/datasheet/lis3mdl.pdf) (Magnetometer)
 - [HTU31](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FHTU31_RHT_SENSOR_IC%7F5%7Fpdf%7FEnglish%7FENG_DS_HTU31_RHT_SENSOR_IC_5.pdf%7FCAT-HSC0007) (Humidity)
 
 ## Work in Progress
