@@ -1,7 +1,6 @@
-D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder.cydsn\Tricorder.cyprj|44dfc60d-a812-45ae-af3b-bde0a2b770b8
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|ffa2e8f7-95a1-4c24-b1ac-4369f59090bc
-C:\Users\awliu\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|abb26830-6d88-460f-9bf8-9c0845db9a99
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|9f185390-7990-4c0d-b96b-0f15748bad4d
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|53097e49-b6fa-4652-a80a-903c26ce5225
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|9c12fa04-cf62-473f-a036-dd8e829d4aaf
-D:\Downloads\UCD\2023-2024\Winter Quarter 2023-2024\EEC136B\Tricorder\Tricorder_Copy_01.cydsn\Tricorder_Copy_01.cyprj|a21e1676-31fb-4888-b361-0ccb97978cef
+D:\Downloads\TerraSense-Tricorder-main\Tricorder.cydsn\Tricorder.cyprj|90247d43-b0cd-43e9-bf38-a3aad0a4b97f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|43fe18ed-a9fa-4032-a9ed-cb6ff8e988c1
+D:\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|8a759dec-1905-4aa0-b7ba-e2d603dae045
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|4d0195bb-5507-4656-be4c-d19250c7511f
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|272529fa-7890-472b-af91-07e712a45896
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|ec32659c-8862-476a-83d4-34bbce31811a
